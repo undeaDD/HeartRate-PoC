@@ -1,20 +1,24 @@
-//
-//  ViewController.swift
-//  HRS
-//
-//  Created by Dominic Drees on 15.02.19.
-//  Copyright © 2019 DeltaSiege. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var heartLabel: UILabel!
+
+    @IBAction func authorizeTapped(sender: AnyObject) {
+        HealthKitManager.authorizeHealthKit()
     }
 
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            HealthKitManager.getTodaysHeartRates{ (value) in
+                DispatchQueue.main.async {
+                    self.heartLabel.text = "\(value) ❤️"
+                }
+            }
+        }.fire()
+    }
+    
 }
 

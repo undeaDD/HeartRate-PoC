@@ -12,7 +12,22 @@
 		B627B06D2217607F00BCB5AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B627B06B2217607F00BCB5AE /* Main.storyboard */; };
 		B627B06F2217608100BCB5AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B627B06E2217608100BCB5AE /* Assets.xcassets */; };
 		B627B0722217608100BCB5AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B627B0702217608100BCB5AE /* LaunchScreen.storyboard */; };
+		B627B0A62217642800BCB5AE /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B627B0A52217642800BCB5AE /* HealthKitManager.swift */; };
+		B627B0A82218548E00BCB5AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B627B0A72218548E00BCB5AE /* HealthKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B627B0A0221760F800BCB5AE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B627B0642217607F00BCB5AE /* HRS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +37,10 @@
 		B627B06E2217608100BCB5AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B627B0712217608100BCB5AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B627B0732217608100BCB5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B627B0A3221763D600BCB5AE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		B627B0A52217642800BCB5AE /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		B627B0A72218548E00BCB5AE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		B627B0A92218548E00BCB5AE /* HRS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B627B0A82218548E00BCB5AE /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +60,7 @@
 			children = (
 				B627B0662217607F00BCB5AE /* HRS */,
 				B627B0652217607F00BCB5AE /* Products */,
+				B627B0A2221763D600BCB5AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +75,25 @@
 		B627B0662217607F00BCB5AE /* HRS */ = {
 			isa = PBXGroup;
 			children = (
+				B627B0732217608100BCB5AE /* Info.plist */,
+				B627B0A92218548E00BCB5AE /* HRS.entitlements */,
 				B627B0672217607F00BCB5AE /* AppDelegate.swift */,
 				B627B0692217607F00BCB5AE /* ViewController.swift */,
+				B627B0A52217642800BCB5AE /* HealthKitManager.swift */,
 				B627B06B2217607F00BCB5AE /* Main.storyboard */,
-				B627B06E2217608100BCB5AE /* Assets.xcassets */,
 				B627B0702217608100BCB5AE /* LaunchScreen.storyboard */,
-				B627B0732217608100BCB5AE /* Info.plist */,
+				B627B06E2217608100BCB5AE /* Assets.xcassets */,
 			);
 			path = HRS;
+			sourceTree = "<group>";
+		};
+		B627B0A2221763D600BCB5AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B627B0A72218548E00BCB5AE /* HealthKit.framework */,
+				B627B0A3221763D600BCB5AE /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +106,7 @@
 				B627B0602217607F00BCB5AE /* Sources */,
 				B627B0612217607F00BCB5AE /* Frameworks */,
 				B627B0622217607F00BCB5AE /* Resources */,
+				B627B0A0221760F800BCB5AE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -96,6 +129,11 @@
 				TargetAttributes = {
 					B627B0632217607F00BCB5AE = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -137,6 +175,7 @@
 			files = (
 				B627B06A2217607F00BCB5AE /* ViewController.swift in Sources */,
 				B627B0682217607F00BCB5AE /* AppDelegate.swift in Sources */,
+				B627B0A62217642800BCB5AE /* HealthKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HRS/HRS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AXLC3PQNC8;
 				INFOPLIST_FILE = HRS/Info.plist;
@@ -292,7 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.deltasiege.HRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -300,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HRS/HRS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AXLC3PQNC8;
 				INFOPLIST_FILE = HRS/Info.plist;
@@ -310,7 +351,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.deltasiege.HRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
